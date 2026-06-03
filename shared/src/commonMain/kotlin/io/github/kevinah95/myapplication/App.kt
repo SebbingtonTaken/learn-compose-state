@@ -2,11 +2,17 @@ package io.github.kevinah95.myapplication
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import io.github.kevinah95.myapplication.screens.ContadorScreen
 
 @Composable
 fun App() {
     MaterialTheme {
-        ContadorScreen()
+        var count by remember { mutableStateOf(0) }
+        ContadorScreen( count = count,
+            onIncrement = { count++ } )
     }
 }

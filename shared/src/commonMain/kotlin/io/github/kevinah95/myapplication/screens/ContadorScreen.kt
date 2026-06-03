@@ -10,6 +10,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -17,23 +19,23 @@ import androidx.compose.ui.unit.dp
 // TODO Paso 1: Observa que `count` se reinicia en cada recomposición.
 //             ¿Por qué ocurre esto? Agrega un comentario explicando el problema.
 @Composable
-fun ContadorScreen() {
-    var count = 0 // No funciona: ???
-
+fun ContadorScreen(    count: Int,
+                       onIncrement: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+
     ) {
         Text(
-            text = "Contador: $count",
+            text = "Count",
             style = MaterialTheme.typography.headlineMedium
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { count++ }) {
-            Text("Incrementar")
+        Button(onClick = onIncrement) {
+            Text("$count")
         }
     }
 }
